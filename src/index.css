@@ -2,29 +2,146 @@
 
 @import "tailwindcss";
 
-
 @layer base {
   html {
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   }
 
   body {
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   }
 
   h1, h2, h3, h4, h5, h6, p, span, a {
     color: inherit;
   }
-}
-/* Optionally dark mode / color customizations */
-@layer utilities {
-  .dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
+
+  /* Enhanced Dark mode overrides - Black theme */
+  .dark {
+    background-color: #000000 !important; /* pure black */
+    color: #ffffff !important; /* pure white */
   }
 
-  .theme-animating {
-    clip-path: circle(var(--ripple-radius) at var(--ripple-x) var(--ripple-y)) !important;
-    transition: clip-path 0.5s ease-in-out;
+  .dark * {
+    background-color: inherit !important;
+    color: inherit !important;
   }
+
+  /* Light backgrounds in dark mode */
+  .dark .bg-white {
+    background-color: #111111 !important; /* very dark gray */
+  }
+
+  .dark .bg-gray-50 {
+    background-color: #000000 !important; /* black */
+  }
+
+  .dark .bg-neutral-50 {
+    background-color: #000000 !important; /* black */
+  }
+
+  .dark .bg-neutral-100 {
+    background-color: #111111 !important; /* very dark gray */
+  }
+
+  .dark .bg-zinc-900 {
+    background-color: #000000 !important; /* black */
+  }
+
+  /* Text colors in dark mode */
+  .dark .text-neutral-900 {
+    color: #ffffff !important; /* white */
+  }
+
+  .dark .text-neutral-700 {
+    color: #cccccc !important; /* light gray */
+  }
+
+  .dark .text-neutral-300 {
+    color: #aaaaaa !important; /* medium gray */
+  }
+
+  .dark .text-gray-800 {
+    color: #ffffff !important; /* white */
+  }
+
+  .dark .text-gray-500 {
+    color: #888888 !important; /* gray */
+  }
+
+  .dark .text-gray-400 {
+    color: #888888 !important; /* gray */
+  }
+
+  /* Border colors in dark mode */
+  .dark .border-gray-200 {
+    border-color: #333333 !important; /* dark gray */
+  }
+
+  .dark .border-zinc-700 {
+    border-color: #333333 !important; /* dark gray */
+  }
+
+  .dark .border-gray-800 {
+    border-color: #222222 !important; /* very dark gray */
+  }
+
+  /* Hover states */
+  .dark .hover\:bg-neutral-100:hover {
+    background-color: #111111 !important; /* very dark gray */
+  }
+
+  .dark .hover\:bg-zinc-800:hover {
+    background-color: #000000 !important; /* black */
+  }
+
+  /* Specific component overrides */
+  .dark .bg-blue-100 {
+    background-color: #111111 !important; /* very dark gray */
+  }
+
+  .dark .text-blue-600 {
+    color: #ffffff !important; /* white */
+  }
+
+  .dark .text-blue-500 {
+    color: #ffffff !important; /* white */
+  }
+
+  .dark .border-blue-300 {
+    border-color: #333333 !important; /* dark gray */
+  }
+
+  .dark .text-blue-300 {
+    color: #cccccc !important; /* light gray */
+  }
+
+  .dark .border-blue-700 {
+    border-color: #222222 !important; /* very dark gray */
+  }
+
+  /* GitHub icon */
+  .dark .text-black {
+    color: #ffffff !important; /* white */
+  }
+
+  @keyframes glowDot {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+}
+
+.animate-glow-dot {
+  animation: glowDot 3.5s ease-in-out infinite;
+}
+
+
 }

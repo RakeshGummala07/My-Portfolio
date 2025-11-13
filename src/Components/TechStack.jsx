@@ -33,7 +33,7 @@ export default function TechStackSection() {
             <img
               src={skill.icon}
               alt={skill.name}
-              className="w-10 h-10 sm:w-12 sm:h-12 object-contain transition-transform duration-300 group-hover:scale-110"
+              className="w-8 h-8 sm:w-12 sm:h-12 object-contain transition-transform duration-300 group-hover:scale-110"
             />
             {/* Tooltip */}
             <span className="absolute bottom-[-1.8rem] px-2 py-0.5 text-[11px] sm:text-[12px] bg-gray-800 text-white dark:bg-gray-200 dark:text-black rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-md">

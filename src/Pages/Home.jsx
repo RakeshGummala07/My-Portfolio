@@ -15,7 +15,7 @@ import TechStackSection from "../Components/TechStack";
 export default function Home() {
   return (
     <>
-    <div className="min-h-[200vh] flex items-start justify-start">
+    <div className="min-h-screen flex items-start justify-start">
       <Container className="min-h-screen">
         <Navbar/>
         <Hero/>

@@ -16,7 +16,11 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     // Sync the class on mount and when isDark changes
     if (typeof window !== 'undefined') {
-      document.documentElement.classList.toggle("dark", isDark);
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     }
   }, [isDark]);
 

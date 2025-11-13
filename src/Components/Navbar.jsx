@@ -52,7 +52,7 @@ export default function Navbar() {
             borderBottom : scrolled ?  "none" : "1px solid gray"
           }
         }
-        className={`flex sticky top-0 inset-x-0 items-center justify-between py-2 my-2 ${scrolled ? "mx-auto" : "max-w-4xl"}`}>
+        className={`flex sticky top-0 inset-x-0 items-center justify-between py-2 my-2 z-50 ${scrolled ? "mx-auto" : "max-w-4xl"}`}>
           <p
            style={{
             visibility : scrolled ? "visible" : "hidden",

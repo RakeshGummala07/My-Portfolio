@@ -1,9 +1,8 @@
 import React from "react";
-
 export default function Name() {
   return (
     <>
-      <div className="h-40 flex items-center relative  border border-amber-600 ">
+      <div className="h-40 flex items-center relative bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-xl shadow-sm  font-mono text-gray-800 dark:text-gray-100 leading-relaxed">
         <div className="">
           <img
             className=" h-40 w-40 p-1 rounded-full border border-neutral-500"
@@ -13,7 +12,7 @@ export default function Name() {
             height="200"
           />
         </div>
-        <div className="absolute top-18 left-42">
+        <div className="absolute top-18 left-42 ">
           <div className="">
             <p className="text-2xl font-bold">Rakesh Gummala</p>
           </div>
