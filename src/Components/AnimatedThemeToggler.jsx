@@ -36,8 +36,8 @@ export const AnimatedThemeToggler = ({ className = "", duration = 800 }) => {
     // 🟦 Ripple color = upcoming theme background
     overlay.style.backgroundColor = upcomingThemeIsDark ? "#000000" : "#ffffff";
 
-    // 🟦 Start ripple small → expand outward
-    overlay.style.clipPath = `circle(0px at ${x}px ${y}px)`;
+    // 🟦 Start ripple large → contract inward
+    overlay.style.clipPath = `circle(${maxRadius}px at ${x}px ${y}px)`;
     overlay.style.transition = `clip-path ${duration}ms ease-in-out`;
 
     document.body.appendChild(overlay);
@@ -47,9 +47,9 @@ export const AnimatedThemeToggler = ({ className = "", duration = 800 }) => {
       contextToggle();
     });
 
-    // Next frame → animate explosion
+    // Next frame → animate contraction
     requestAnimationFrame(() => {
-      overlay.style.clipPath = `circle(${maxRadius}px at ${x}px ${y}px)`;
+      overlay.style.clipPath = `circle(0px at ${x}px ${y}px)`;
     });
 
     // Remove overlay after animation
