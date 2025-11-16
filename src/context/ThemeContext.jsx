@@ -18,7 +18,9 @@ export const ThemeProvider = ({ children }) => {
     if (typeof window !== 'undefined') {
       if (isDark) {
         document.documentElement.classList.add("dark");
+        document.documentElement.classList.remove("light");
       } else {
+        document.documentElement.classList.add("light");
         document.documentElement.classList.remove("dark");
       }
     }
@@ -27,7 +29,7 @@ export const ThemeProvider = ({ children }) => {
   const toggleTheme = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined'){
       document.documentElement.classList.toggle("dark", newTheme);
       localStorage.setItem("theme", newTheme ? "dark" : "light");
     }

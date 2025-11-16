@@ -20,10 +20,6 @@ export const AnimatedThemeToggler = ({ className = "", duration = 800 }) => {
       Math.max(y, window.innerHeight - y)
     );
 
-    // 🟦 Overlay must use the UPCOMING theme color
-    // (So ripple is correct direction)
-    const upcomingThemeIsDark = !isDark;
-
     const overlay = document.createElement("div");
     overlay.style.position = "fixed";
     overlay.style.top = "0";
@@ -33,8 +29,8 @@ export const AnimatedThemeToggler = ({ className = "", duration = 800 }) => {
     overlay.style.zIndex = "9999";
     overlay.style.pointerEvents = "none";
 
-    // 🟦 Ripple color = upcoming theme background
-    overlay.style.backgroundColor = upcomingThemeIsDark ? "#000000" : "#ffffff";
+    // 🟦 Ripple color = current theme background (since theme toggles before animation)
+    overlay.style.backgroundColor = isDark ? "red" : "blue";
 
     // 🟦 Start ripple large → contract inward
     overlay.style.clipPath = `circle(${maxRadius}px at ${x}px ${y}px)`;
@@ -63,7 +59,7 @@ export const AnimatedThemeToggler = ({ className = "", duration = 800 }) => {
       ref={buttonRef}
       onClick={toggleTheme}
       className={`flex items-center justify-center p-2 rounded-full
-        transition-colors duration-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 ${className}`}
+        transition-colors duration-300 hover:bg-neutral-200 dark:hover:bg-neutral-800`}
       aria-label="Toggle theme"
     >
       {isDark ? (

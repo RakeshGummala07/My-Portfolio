@@ -3,7 +3,7 @@ import React from 'react'
 export default function Hero() {
   return (
     // <div className='h-50 w-full border border-amber-600 my-2 '>
-      <section className="relative w-full h-60 flex items-center justify-center overflow-hidden bg-white dark:bg-zinc-950 text-black dark:text-white">
+      <section className="relative w-full h-60 flex items-center justify-center  bg-white dark:bg-zinc-950 text-black dark:text-white">
       
       {/* Background Dots */}
       <div className="absolute inset-0 pointer-events-none">
