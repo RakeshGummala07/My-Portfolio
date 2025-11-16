@@ -26,11 +26,11 @@ export const AnimatedThemeToggler = ({ className = "", duration = 800 }) => {
     overlay.style.left = "0";
     overlay.style.width = "100vw";
     overlay.style.height = "100vh";
-    overlay.style.zIndex = "9999";
+    overlay.style.zIndex = "999";
     overlay.style.pointerEvents = "none";
 
     // 🟦 Ripple color = current theme background (since theme toggles before animation)
-    overlay.style.backgroundColor = isDark ? "red" : "blue";
+    overlay.style.backgroundColor = isDark ? "black" : "white";
 
     // 🟦 Start ripple large → contract inward
     overlay.style.clipPath = `circle(${maxRadius}px at ${x}px ${y}px)`;

@@ -15,7 +15,7 @@ import TechStackSection from "../Components/TechStack";
 export default function Home() {
   return (
     <>
-    <div className="min-h-screen flex items-start justify-start">
+    <div className="min-h-screen flex items-start justify-start bg-neutral-50 dark:bg-neutral-950">
       <Container className="min-h-screen">
         <Navbar/>
         <Hero/>
@@ -25,16 +25,9 @@ export default function Home() {
         <AboutSection/>
         <EducationSection/>
         <TechStackSection/>
-        <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
-          Welcome to My Portfolio
-        </h1>
-        <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">
-          This is the home page of my portfolio website. Here you can find
-          information about me and my projects.
-        </p>
+       
 
       </Container>
-      <AnimatedThemeToggler className="fixed bottom-4 right-4" />
       
     </div>
     
