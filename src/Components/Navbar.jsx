@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useMotionValueEvent, useScroll } from "motion/react"
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { AnimatedThemeToggler } from "./AnimatedThemeToggler";
 
 export default function Navbar() {
   const navItems = [
@@ -42,7 +43,7 @@ export default function Navbar() {
       <>
         <motion.nav 
         animate={{
-            boxShadow : scrolled ? "0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28, 33, 0.08)" : "none",
+            // boxShadow : scrolled ? "0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28, 33, 0.08)" : "none",
             maxWidth : scrolled ? "80%" : "100%",
             y : scrolled ? 10 : 0,
             borderRadius : scrolled ? "24px" : "0px",
@@ -63,11 +64,12 @@ export default function Navbar() {
           >Rk</p>
 
           <div className="flex items-center gap-3">
+            <AnimatedThemeToggler />
             {
               navItems.map((items,idx) => (
-                <Link 
-                key={idx} 
-                to={items.href} 
+                <Link
+                key={idx}
+                to={items.href}
                 className="text-sm md:text-base relative px-2 py-1 text-neutral-900 dark:text-neutral-100 transition-colors"
                 onMouseEnter={() => setHovered(idx)}
                 onMouseLeave={() => setHovered(null)}
@@ -80,7 +82,7 @@ export default function Navbar() {
                   <span className="relative z-10 font-san">{items.title}</span>
                 </Link>
               ))
-            }          
+            }
           </div>
         </motion.nav>
       </>
