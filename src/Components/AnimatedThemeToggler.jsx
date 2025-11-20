@@ -1,76 +1,87 @@
-import React, { useCallback, useRef } from "react";
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { flushSync } from "react-dom";
-import { useTheme } from "../context/ThemeContext.jsx";
 
-export const AnimatedThemeToggler = ({ className = "", duration = 800 }) => {
-  const { isDark, toggleTheme: contextToggle } = useTheme();
+export default function AnimatedThemeToggler({ className = "", duration = 400, ...props }) {
+  const [isDark, setIsDark] = useState(false);
   const buttonRef = useRef(null);
 
+  // Load theme on first mount
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const theme = stored || (systemDark ? "dark" : "light");
+
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    setIsDark(theme === "dark");
+  }, []);
+
+  // Watch for any external theme changes
+  useEffect(() => {
+    const updateTheme = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+
+    const observer = new MutationObserver(updateTheme);
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Toggle theme
   const toggleTheme = useCallback(async () => {
     if (!buttonRef.current) return;
 
-    // Get button position
-    const { top, left, width, height } = buttonRef.current.getBoundingClientRect();
-    const x = left + width / 2;
-    const y = top + height / 2;
+    await document.startViewTransition(() => {
+      flushSync(() => {
+        const newTheme = !isDark;
+
+        setIsDark(newTheme);
+        document.documentElement.classList.toggle("dark", newTheme);
+        localStorage.setItem("theme", newTheme ? "dark" : "light");
+      });
+    }).ready;
+
+    const rect = buttonRef.current.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
 
     const maxRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
+      Math.max(rect.left, window.innerWidth - rect.left),
+      Math.max(rect.top, window.innerHeight - rect.top)
     );
 
-    const overlay = document.createElement("div");
-    overlay.style.position = "fixed";
-    overlay.style.top = "0";
-    overlay.style.left = "0";
-    overlay.style.width = "100vw";
-    overlay.style.height = "100vh";
-    overlay.style.zIndex = "999";
-    overlay.style.pointerEvents = "none";
-
-    // 🟦 Ripple color = current theme background (since theme toggles before animation)
-    overlay.style.backgroundColor = isDark ? "black" : "white";
-
-    // 🟦 Start ripple large → contract inward
-    overlay.style.clipPath = `circle(${maxRadius}px at ${x}px ${y}px)`;
-    overlay.style.transition = `clip-path ${duration}ms ease-in-out`;
-
-    document.body.appendChild(overlay);
-
-    // Toggle theme BEFORE animation
-    flushSync(() => {
-      contextToggle();
-    });
-
-    // Next frame → animate contraction
-    requestAnimationFrame(() => {
-      overlay.style.clipPath = `circle(0px at ${x}px ${y}px)`;
-    });
-
-    // Remove overlay after animation
-    setTimeout(() => {
-      document.body.removeChild(overlay);
-    }, duration);
-  }, [contextToggle, duration, isDark]);
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${maxRadius}px at ${x}px ${y}px)`
+        ],
+      },
+      {
+        duration,
+        easing: "ease-in-out",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+  }, [isDark, duration]);
 
   return (
     <button
       ref={buttonRef}
       onClick={toggleTheme}
-      className={`flex items-center justify-center p-2 rounded-full
-        transition-colors duration-300 hover:bg-neutral-200 dark:hover:bg-neutral-800`}
-      aria-label="Toggle theme"
+      className={`p-2 rounded-full ${className}`}
+      {...props}
     >
-      {isDark ? (
-        <Sun
-          className="w-5 h-5 text-yellow-400 transition-transform duration-500"
-        />
-      ) : (
-        <Moon
-          className="w-5 h-5 text-blue-500 transition-transform duration-500"
-        />
-      )}
+      {isDark ? <Sun className="text-amber-300 h-5 w-5" /> : <Moon className="text-blue-500 h-5 w-5"/>}
+      <span className="sr-only">Toggle theme</span>
     </button>
   );
-};
+}
