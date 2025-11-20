@@ -11,8 +11,8 @@ export default function Hero() {
         <div
           className="
             w-full h-full animate-dotFade
-            bg-[radial-gradient(circle,rgba(0,0,0,0.65)_1px,transparent_1px)]
-            dark:bg-[radial-gradient(circle,rgba(255,255,255,0.45)_1px,transparent_1px)]
+            bg-[radial-gradient(circle,rgba(0,0,0,0.55)_0.65px,transparent_1px)]
+            dark:bg-[radial-gradient(circle,rgba(255,255,255,0.35)_0.6px,transparent_1px)]
             bg-size-[20px_20px]
           "
         ></div>
@@ -20,7 +20,7 @@ export default function Hero() {
 
       {/* Center-Out Glow Ripple */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="animate-centerGlow w-[40%] h-[40%] rounded-full bg-blue-100 dark:bg-gray-700 blur-7xl"></div>
+        <div className="animate-centerGlow w-[40%] h-[40%] rounded-full bg-blue-100 dark:bg-gray-800 blur-7xl"></div>
       </div>
 
       {/* Content */}

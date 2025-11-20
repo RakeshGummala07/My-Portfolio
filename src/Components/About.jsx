@@ -7,7 +7,7 @@ export default function AboutSection() {
         About
       </h2>
 
-      <div className="space-y-2 md:space-y-3 text-[12px]  md:text-[15px]">
+      <div className="space-y-2 md:space-y-3 text-[14px]  ">
         <p>
           Hello, World! I’m <strong>Rakesh Gummala</strong> — a passionate{" "}
           <strong>Full Stack Developer</strong> focused on building high-performance, 

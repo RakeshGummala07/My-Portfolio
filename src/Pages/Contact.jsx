@@ -2,6 +2,8 @@
 
 import emailjs from "emailjs-com";
 import { useState } from "react";
+import FadeInSection from "../Components/FadeInSection";
+import Container from "../Components/Container";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -32,52 +34,56 @@ export default function Contact() {
   }
 
   return (
-    <section className="max-w-2xl mx-auto px-6 py-16">
-      <h1 className="text-3xl font-bold mb-2">Contact Me</h1>
-      <p className="text-gray-600 dark:text-gray-400 mb-10">
-        I'm open to freelancing offers. Reach out to me.
-      </p>
+    <Container>
+    <FadeInSection>
+      <section className="max-w-2xl mx-auto px-6 py-16">
+        <h1 className="text-3xl font-bold mb-2">Contact Me</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-10">
+          I'm open to freelancing offers. Reach out to me.
+        </p>
 
-      <form onSubmit={sendEmail} className="space-y-6">
+        <form onSubmit={sendEmail} className="space-y-6">
 
-        <div>
-          <label className="block text-sm mb-1">Full name</label>
-          <input
-            type="text"
-            name="user_name"
-            required
-            className="w-full rounded-lg border px-4 py-2 bg-white dark:bg-zinc-900"
-          />
-        </div>
+          <div>
+            <label className="block text-sm mb-1">Full name</label>
+            <input
+              type="text"
+              name="user_name"
+              required
+              className="w-full rounded-lg border px-4 py-2 bg-white dark:bg-zinc-900"
+            />
+          </div>
 
-        <div>
-          <label className="block text-sm mb-1">Email Address</label>
-          <input
-            type="email"
-            name="user_email"
-            required
-            className="w-full rounded-lg border px-4 py-2 bg-white dark:bg-zinc-900"
-          />
-        </div>
+          <div>
+            <label className="block text-sm mb-1">Email Address</label>
+            <input
+              type="email"
+              name="user_email"
+              required
+              className="w-full rounded-lg border px-4 py-2 bg-white dark:bg-zinc-900"
+            />
+          </div>
 
-        <div>
-          <label className="block text-sm mb-1">Message</label>
-          <textarea
-            name="message"
-            rows="4"
-            required
-            className="w-full rounded-lg border px-4 py-2 bg-white dark:bg-zinc-900"
-          />
-        </div>
+          <div>
+            <label className="block text-sm mb-1">Message</label>
+            <textarea
+              name="message"
+              rows="4"
+              required
+              className="w-full rounded-lg border px-4 py-2 bg-white dark:bg-zinc-900"
+            />
+          </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-gray-100 dark:bg-zinc-800 rounded-lg py-2 font-medium"
-        >
-          {loading ? "Sending..." : "Send message"}
-        </button>
-      </form>
-    </section>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-gray-100 dark:bg-zinc-800 rounded-lg py-2 font-medium"
+          >
+            {loading ? "Sending..." : "Send message"}
+          </button>
+        </form>
+      </section>
+    </FadeInSection>
+    </Container>
   );
 }

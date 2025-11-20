@@ -23,7 +23,7 @@ export default function NameWritingEffect({
 
   return (
     <motion.svg
-      className={`h-40 ${className} md:h-80`}
+      className={`h-50 ${className} md:h-80`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-20 -40 300 180"
       fill="none"

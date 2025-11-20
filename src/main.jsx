@@ -7,6 +7,10 @@ import Home from "./Pages/Home.jsx";
 import Contact from "./Pages/Contact.jsx";
 import Navbar from "./Components/Navbar.jsx";
 import Container from "./Components/Container.jsx";
+import Projects from "./Pages/Projects.jsx";
+import Blogs from "./Pages/Blogs.jsx";
+import BlogOne from "./Pages/Blogs/BlogOne.jsx";
+
 
 
 
@@ -19,6 +23,9 @@ createRoot(document.getElementById("root")).render(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/blog" element={<Blogs />} />
+          <Route path="/blog/:slug" element={<BlogOne />} />
         </Routes>
       </Router>
     </ThemeProvider>
