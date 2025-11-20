@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // ------------------------------
 // ActivityTag Component
@@ -26,9 +26,7 @@ const ActivityTag = ({ type = "active", label }) => {
   );
 };
 
-// ------------------------------
-// Blog Page
-// ------------------------------
+
 export default function BlogOne() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 text-gray-800 dark:text-gray-200">
@@ -161,9 +159,13 @@ export default function UserStatusCard() {
 // Copyable Code Block Component
 // -----------------------------------
 function CodeBlock({ title, code }) {
+  const [copied, setCopied] = useState(false);
+
   const copyToClipboard = () => {
+    if (copied) return; // Prevent multiple clicks during copied state
     navigator.clipboard.writeText(code);
-    alert("Copied to clipboard!");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -172,9 +174,19 @@ function CodeBlock({ title, code }) {
         <span className="text-sm text-gray-300">{title}</span>
         <button
           onClick={copyToClipboard}
-          className="text-xs bg-gray-700 px-2 py-1 rounded hover:bg-gray-600"
+          className="text-xs bg-gray-700 px-2 py-1 rounded hover:bg-gray-600 flex items-center gap-1"
         >
-          Copy
+          {copied ? (
+            <>
+              <span>✓</span>
+              <span>Copied</span>
+            </>
+          ) : (
+            <>
+              <span>📋</span>
+              <span>Copy</span>
+            </>
+          )}
         </button>
       </div>
 
