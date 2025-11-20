@@ -131,6 +131,26 @@
   animation: centerGlow 4.8s ease-in-out infinite;
 }
 
+@keyframes dotFade {
+  0% {
+    opacity: 0.45;
+    filter: brightness(0.8) blur(0px);
+  }
+  50% {
+    opacity: 0.9;
+    filter: brightness(1.4) blur(1px);
+  }
+  100% {
+    opacity: 0.45;
+    filter: brightness(0.8) blur(0px);
+  }
+}
+
+.animate-dotFade {
+  animation: dotFade 4s ease-in-out infinite;
+}
+
+
 
 
 ::view-transition-old(root),

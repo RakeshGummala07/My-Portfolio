@@ -31,7 +31,7 @@ export default function NameWritingEffect({
       strokeWidth="5"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 1 }}
       {...props}
     >
       <title>Rakesh</title>
@@ -45,7 +45,7 @@ export default function NameWritingEffect({
           duration: calc(2.8),
           ease: "easeInOut",
           delay: calc(0.7),
-          opacity: { duration: 0.7, delay: calc(0.7) },
+          opacity: { duration: 1.0, delay: calc(0.7) },
           repeat:Infinity,
         }}
         onAnimationComplete={onAnimationComplete}

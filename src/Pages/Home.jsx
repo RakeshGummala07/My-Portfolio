@@ -16,7 +16,7 @@ export default function Home() {
     <>
     <div className="min-h-screen flex items-start justify-start bg-neutral-50 dark:bg-neutral-950">
       <Container className="min-h-screen">
-        <Navbar/>
+        
         <Hero/>
         <Name/>
         <ProfileCard/>

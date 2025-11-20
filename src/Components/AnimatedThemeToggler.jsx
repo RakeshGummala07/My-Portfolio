@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { flushSync } from "react-dom";
 
-export default function AnimatedThemeToggler({ className = "", duration = 400, ...props }) {
+export default function AnimatedThemeToggler({ className = "", duration = 800, ...props }) {
   const [isDark, setIsDark] = useState(false);
   const buttonRef = useRef(null);
 

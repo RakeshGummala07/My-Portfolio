@@ -17,8 +17,25 @@ const skills = [
   { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
   { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
   { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
-  { name: "Matplotlib", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/matplotlib/matplotlib-original.svg" },
+
 ];
+
+// Detect black/white logos
+const isMono = (url) => {
+  const name = url.toLowerCase();
+  return (
+    name.includes("github") ||
+    name.includes("express") ||
+    name.includes("mono") ||
+    name.includes("line") ||
+    name.includes("glyph") ||
+    name.includes("black") ||
+    name.includes("white") ||
+    name.endsWith(".svg") && (
+      name.includes("github") || name.includes("express")
+    )
+  );
+};
 
 export default function TechStackSection() {
   return (
@@ -28,21 +45,29 @@ export default function TechStackSection() {
       </h2>
 
       <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-9 gap-4 md:gap-6 place-items-center">
-        {skills.map((skill, idx) => (
-          <div key={idx} className="group relative flex flex-col items-center">
-            <img
-              src={skill.icon}
-              alt={skill.name}
-              className="w-8 h-8 md:w-10 md:h-10 object-contain transition-transform duration-300 group-hover:scale-110"
-            />
-            {/* Tooltip */}
-            <span className="absolute z-10 bottom-[-1.8rem] px-2 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-md">
-              {skill.name}
-            </span>
-          </div>
-        ))}
+        {skills.map((skill, idx) => {
+          const mono = isMono(skill.icon);
+
+          return (
+            <div key={idx} className="group relative flex flex-col items-center">
+              <img
+                src={skill.icon}
+                alt={skill.name}
+                className={`
+                  w-8 h-8 md:w-10 md:h-10 object-contain transition-transform duration-300 
+                  group-hover:scale-110
+                  ${mono ? "dark:brightness-0 dark:invert" : ""}
+                `}
+              />
+
+              {/* Tooltip */}
+              <span className="absolute z-10 bottom-[-1.8rem] px-2 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-md bg-white dark:bg-zinc-800 text-black dark:text-white">
+                {skill.name}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </section>
-    
   );
 }
