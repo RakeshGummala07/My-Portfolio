@@ -3,11 +3,11 @@ import React from "react";
 export default function AboutSection() {
   return (
     <section className="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-xl shadow-sm p-6 sm:p-8 md:p-10 font-mono text-gray-800 dark:text-gray-100 leading-relaxed">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-5 border-b border-gray-200 dark:border-zinc-700 pb-2">
+      <h2 className="text-2xl  font-bold mb-3 border-b border-gray-200 dark:border-zinc-700 pb-2">
         About
       </h2>
 
-      <div className="space-y-4 sm:space-y-5 text-[13px] sm:text-[14px] md:text-[15px]">
+      <div className="space-y-2 md:space-y-3 text-[12px]  md:text-[15px]">
         <p>
           Hello, World! I’m <strong>Rakesh Gummala</strong> — a passionate{" "}
           <strong>Full Stack Developer</strong> focused on building high-performance, 
@@ -23,7 +23,7 @@ export default function AboutSection() {
         <p>
           I enjoy solving complex problems on{" "}
           <a
-            href="https://leetcode.com/"
+            href="https://leetcode.com/Rakesh_Gummala"
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:text-blue-600 dark:hover:text-blue-400"

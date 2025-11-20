@@ -5,6 +5,8 @@ import { ThemeProvider } from "./context/ThemeContext.jsx";
 import "./index.css";
 import Home from "./Pages/Home.jsx";
 
+
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider>
@@ -14,5 +16,7 @@ createRoot(document.getElementById("root")).render(
         </Routes>
       </Router>
     </ThemeProvider>
+    
+     
   </StrictMode>
 );

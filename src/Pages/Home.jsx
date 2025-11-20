@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "../Components/Container";
 import Navbar from "../Components/Navbar";
-import { AnimatedThemeToggler } from "../Components/AnimatedThemeToggler";
 import Hero from "../Components/Hero";
 import Name from "../Components/Name";
 import ProfileCard from "../Components/ProfileCard";

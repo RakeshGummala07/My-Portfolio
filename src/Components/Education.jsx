@@ -47,7 +47,7 @@ export default function EducationSection() {
 
   return (
     <section className="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-xl shadow-sm p-6 sm:p-8 md:p-10 font-mono text-gray-800 dark:text-gray-100 leading-relaxed">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-5 border-b border-gray-200 dark:border-zinc-700 pb-2">
+      <h2 className="text-2xl  font-bold mb-5 border-b border-gray-200 dark:border-zinc-700 pb-2">
         Education
       </h2>
 
@@ -115,7 +115,7 @@ export default function EducationSection() {
                   isOpen ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
                 }`}
               >
-                <ul className="list-disc list-inside text-[13px] sm:text-[14px] space-y-1">
+                <ul className="list-disc list-inside text-[11px] md:text-[12px] space-y-1">
                   {edu.details.map((detail, i) => (
                     <li key={i}>{detail}</li>
                   ))}

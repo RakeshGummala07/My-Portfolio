@@ -23,7 +23,7 @@ export default function ProfileCard() {
             </div>
 
             {/* Text */}
-            <div className="text-[12px] sm:text-[13px] md:text-[14px] leading-tight truncate">
+            <div className="text-[12px] md:text-[16px] leading-tight truncate">
               {item.text.includes("@") || item.text.includes(".com") ? (
                 <a
                   href={
