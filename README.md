@@ -42,7 +42,7 @@ A modern, responsive personal portfolio website built with React, showcasing pro
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+4. Open your browser and navigate to localhost
 
 ## Available Scripts
 
