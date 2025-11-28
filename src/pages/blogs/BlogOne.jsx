@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FadeInSection from "../../Components/FadeInSection";
+import FadeInSection from "../../components/FadeInSection";
 
 const ActivityTag = ({ type = "active", label }) => {
   const styles = {
