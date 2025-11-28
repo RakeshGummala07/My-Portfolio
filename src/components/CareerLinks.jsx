@@ -43,14 +43,14 @@ export default function CareerLinks() {
         >
           <div className="flex items-center gap-2 md:gap-4">
             {/* Icon */}
-            <div className="h-10 w-10 flex items-center justify-center bg-gray-100 dark:bg-zinc-800 rounded-xl text-xl">
+            <div className="h-10 w-10 font-mono flex items-center justify-center bg-gray-100 dark:bg-zinc-800 rounded-xl text-xl">
               {item.icon}
             </div>
 
             {/* Text */}
             <div className="flex flex-col leading-tight">
-              <span className="font-medium text-[15px] ">{item.name}</span>
-              <span className="text-gray-500 md:text-sm text-[10px]">
+              <span className="font-medium text-[15px] font-mono">{item.name}</span>
+              <span className="text-gray-500 md:text-sm text-[12px]">
                 {item.username}
               </span>
             </div>

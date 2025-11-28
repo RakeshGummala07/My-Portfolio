@@ -31,7 +31,7 @@ export default function Navbar() {
           boxShadow: scrolled
             ? "0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28, 33, 0.08)"
             : "none",
-          maxWidth: scrolled ? "75%" : "100%",
+          maxWidth: scrolled ? "85%" : "100%",
           y: scrolled ? 10 : 0,
           backdropFilter: scrolled ? "blur(10px)" : "none",
           borderRadius: scrolled ? "24px" : "0px",

@@ -5,8 +5,8 @@ export default function Footer() {
     <>
     <footer className='text-center font-mono my-3'>
         
-        <p className='md:text-sm'>Developed by <span className='font-semibold'>Rakesh Gummala</span></p>
-        <p className='md:text-sm'>&copy;2025. All Rights reserved</p>
+        <p className='text-xs'>Developed by <span className='font-semibold'>Rakesh Gummala</span></p>
+        <p className='text-xs'>&copy;2025. All Rights reserved</p>
     </footer>
     </>
   )
