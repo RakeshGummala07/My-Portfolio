@@ -1,42 +1,29 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { motion } from "motion/react";
 import AnimatedThemeToggler from "./AnimatedThemeToggler";
 
 export default function Navbar() {
   const navItems = [
-    {
-      title: "Myfolio",
-      href: "/",
-    },
-
-    {
-      title: "Projects",
-      href: "/projects",
-    },
-    {
-      title: "Contact",
-      href: "/contact",
-    },
-    {
-      title: "Blog",
-      href: "/blog",
-    },
+    { title: "Myfolio", href: "/" },
+    { title: "Projects", href: "/projects" },
+    { title: "Contact", href: "/contact" },
+    { title: "Blog", href: "/blog" },
   ];
 
   const [hovered, setHovered] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const { scrollY } = useScroll();
-
   const [scrolled, setScrolled] = useState(false);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 20) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  });
+  // Scroll listener
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <motion.nav
@@ -55,85 +42,82 @@ export default function Navbar() {
         }}
         className={`flex sticky top-0 inset-x-0 px-3 items-center justify-between z-50 ${scrolled ? "mx-auto backdrop-blur-md bg-white/10 dark:bg-black/10 py-1" : "py-2"} ${scrolled ? "max-w-[80%]" : "max-w-4xl"}`}
       >
-        <p
-          style={{
-            visibility: scrolled ? "visible" : "hidden",
-            opacity: scrolled ? 1 : 0,
-            transition: { duration: 0.5 },
-          }}
-          className=" text-neutral-900 dark:text-neutral-100 rounded-full"
-        >
-          <Link to="/"><img src="/icons/logo.jpg" alt="logo" className="size-7 rounded-full"/></Link>
+        {/* Logo (shows only when scrolled) */}
+        <p className={`transition-opacity duration-300 ${scrolled ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <Link to="/">
+            <img
+              src="/icons/logo.jpg"
+              alt="logo"
+              className="size-7 rounded-full"
+            />
+          </Link>
         </p>
 
-        <div className="flex items-center gap-3 rounded-2xl">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-4">
+          {navItems.map((item, idx) => (
+            <Link
+              key={idx}
+              to={item.href}
+              className="text-sm md:text-base relative px-1 text-neutral-900 dark:text-neutral-100 font-mono"
+              onMouseEnter={() => setHovered(idx)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              {hovered === idx && (
+                <motion.span
+                  layoutId="nav-hover"
+                  className="absolute inset-0 bg-neutral-100/80 dark:bg-neutral-800/80 rounded-md"
+                />
+              )}
+              <span className="relative z-10">{item.title}</span>
+            </Link>
+          ))}
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="flex items-center gap-3">
           <AnimatedThemeToggler />
-          {/* Hamburger Menu Button for Mobile */}
           <button
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1"
+            className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <span
-              className={`block w-5 h-0.5 bg-neutral-900 dark:bg-neutral-100 transition-transform duration-300 ${isOpen ? "rotate-45 translate-y-1.5" : ""}`}
-            ></span>
-            <span
-              className={`block w-5 h-0.5 bg-neutral-900 dark:bg-neutral-100 transition-opacity duration-300 ${isOpen ? "opacity-0" : ""}`}
-            ></span>
-            <span
-              className={`block w-5 h-0.5 bg-neutral-900 dark:bg-neutral-100 transition-transform duration-300 ${isOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
-            ></span>
+            <span className={`block w-5 h-0.5 bg-neutral-900 dark:bg-neutral-100 transition-transform duration-300 ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-neutral-900 dark:bg-neutral-100 transition-opacity duration-300 ${isOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-neutral-900 dark:bg-neutral-100 transition-transform duration-300 ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
-          {/* Desktop Nav Items */}
-          <div className="hidden md:flex items-center gap-3">
-            {navItems.map((items, idx) => (
-              <Link
-                key={idx}
-                to={items.href}
-                className="text-sm md:text-base relative px-1 text-neutral-900 dark:text-neutral-100 transition-colors rounded-4xl font-mono"
-                onMouseEnter={() => setHovered(idx)}
-                onMouseLeave={() => setHovered(null)}
-              >
-                {hovered === idx && (
-                  <motion.span
-                    layoutId="hovered-span"
-                    className="h-full w-full absolute inset-0 bg-neutral-100 dark:bg-neutral-800 rounded-md transition ease-in duration-300"
-                  />
-                )}
-                <span className="relative z-10 font-san">{items.title}</span>
-              </Link>
-            ))}
-          </div>
         </div>
-        {/* Mobile */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-60 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800"
-            onClick={() => setIsOpen(false)}
+      </motion.nav>
+
+      {/* Full Screen Mobile Nav */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-60 bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center"
+          onClick={() => setIsOpen(false)}
+        >
+          <motion.ul
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="flex flex-col items-center justify-center space-y-6 h-full font-mono text-2xl"
+            onClick={(e) => e.stopPropagation()}
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="flex flex-col items-center justify-center space-y-3 "
-              onClick={(e) => e.stopPropagation()}
-            >
-              {navItems.map((items, idx) => (
+            {navItems.map((item, idx) => (
+              <li key={idx}>
                 <Link
-                  key={idx}
-                  to={items.href}
-                  className="text-xl text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors hover:scale-50 font-mono"
+                  to={item.href}
+                  className="text-neutral-900 dark:text-neutral-100 hover:scale-105 transition-transform"
                   onClick={() => setIsOpen(false)}
                 >
-                  {items.title}
+                  {item.title}
                 </Link>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-      </motion.nav>
+              </li>
+            ))}
+          </motion.ul>
+        </motion.div>
+      )}
     </>
   );
 }
