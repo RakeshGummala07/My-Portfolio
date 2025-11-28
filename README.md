@@ -1,16 +1,81 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive personal portfolio website built with React, showcasing projects, skills, and professional information.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Design**: Optimized for all device sizes
+- **Dark/Light Theme**: Toggle between themes with smooth animations
+- **Interactive Animations**: Powered by Framer Motion for engaging user experience
+- **Multi-page Navigation**: Home, Projects, Contact, and Blog sections
+- **Contact Form**: Integrated contact functionality using EmailJS
+- **Project Showcase**: Dedicated section to display personal projects with images
+- **Tech Stack Display**: Visual representation of technical skills
+- **Blog Integration**: Space for sharing thoughts and insights
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion
+- **Routing**: React Router DOM
+- **Icons**: Lucide React, React Icons
+- **Email Service**: EmailJS
+- **Development**: ESLint for code linting
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd Portfolio
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build the project for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint for code linting
+
+## Project Structure
+
+```
+Portfolio/
+├── public/
+│   ├── icons/          # Favicon and logo
+│   ├── logo/           # Technology logos
+│   └── project-images/ # Project screenshots
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── context/        # React context providers
+│   ├── pages/          # Main page components
+│   │   └── blogs/      # Blog-related components
+│   ├── App.jsx         # Main app component
+│   ├── main.jsx        # App entry point
+│   └── index.css       # Global styles
+├── index.html          # HTML template
+├── package.json        # Dependencies and scripts
+├── vite.config.js      # Vite configuration
+├── tailwind.config.js  # Tailwind CSS configuration
+└── eslint.config.js    # ESLint configuration
+```
+
+## Contributing
+
+This is a personal portfolio project. For suggestions or improvements, please open an issue or submit a pull request.
+
+
