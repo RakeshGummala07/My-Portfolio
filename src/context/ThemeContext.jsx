@@ -1,13 +1,15 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
     // Initialize state based on localStorage or system preference
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
       return savedTheme === "dark" || (!savedTheme && prefersDark);
     }
     return false;
@@ -15,7 +17,7 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     // Sync the class on mount and when isDark changes
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       if (isDark) {
         document.documentElement.classList.add("dark");
       } else {
@@ -27,7 +29,7 @@ export const ThemeProvider = ({ children }) => {
   const toggleTheme = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
-    if (typeof window !== 'undefined'){
+    if (typeof window !== "undefined") {
       document.documentElement.classList.toggle("dark", newTheme);
       localStorage.setItem("theme", newTheme ? "dark" : "light");
     }

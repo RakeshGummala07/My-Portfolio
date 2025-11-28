@@ -10,6 +10,7 @@ import EducationSection from "../Components/Education";
 import TechStackSection from "../Components/TechStack";
 import FadeInSection from "../Components/FadeInSection";
 import ProjectsSection from "../Components/ProjectSection";
+import Blogs from "./Blogs";
 
 
 
@@ -18,21 +19,17 @@ export default function Home() {
     <>
     <div className="min-h-screen flex items-start justify-start bg-neutral-50 dark:bg-neutral-950">
       <Container className="min-h-screen">
-
         <FadeInSection><Hero/></FadeInSection>
         <FadeInSection><Name/></FadeInSection>
         <FadeInSection><ProfileCard/></FadeInSection>
         <FadeInSection><CareerLinks/></FadeInSection>
         <FadeInSection><AboutSection/></FadeInSection>
         <FadeInSection><EducationSection/></FadeInSection>
+        <FadeInSection><Blogs/></FadeInSection>
         <FadeInSection><TechStackSection/></FadeInSection>
         <FadeInSection><ProjectsSection/></FadeInSection>
-
-
       </Container>
-
     </div>
-
     </>
   );
 }

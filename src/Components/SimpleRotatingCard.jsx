@@ -7,10 +7,10 @@ const roles = [
   "Frontend Developer",
   "Backend Developer",
   "Problem Solver",
-  "Being creative with code"
+  "Being creative with code",
 ];
 
-export default function RotatingBlurTitle({className=""}) {
+export default function RotatingBlurTitle({ className = "" }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -21,20 +21,19 @@ export default function RotatingBlurTitle({className=""}) {
   }, []);
 
   return (
-    <div className={`relative flex items-center justify-center ${className}`}>      
+    <div className={`relative flex items-center justify-center ${className}`}>
       <AnimatePresence mode="wait">
         <motion.h1
           key={roles[index]}
-          initial={{ opacity: 0, filter: "blur(12px) scale(0.95)" }}
-          animate={{ opacity: 1, filter: "blur(0px) scale(1)" }}
-          exit={{ opacity: 0, filter: "blur(12px) scale(1.05)" }}
+          initial={{ opacity: 0, filter: "blur(12px) " }}
+          animate={{ opacity: 1, filter: "blur(0px) " }}
+          exit={{ opacity: 0, filter: "blur(12px) " }}
           transition={{ duration: 0.55, ease: "easeInOut" }}
           className="text-[12px] font-bold relative text-white drop-shadow-[0 0 25px rgba(255,255,255,0.45)]"
         >
           {roles[index]}
         </motion.h1>
       </AnimatePresence>
-      
     </div>
   );
 }

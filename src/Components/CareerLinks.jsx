@@ -6,27 +6,27 @@ import { SiLeetcode } from "react-icons/si";
 const links = [
   {
     name: "LeetCode",
-    username: "@rakesh_gummala",
+    username: "leetcode/Rakesh_Gummala",
     icon: <SiLeetcode className="text-[#FFA116]" />,
-    url: "https://leetcode.com/",
+    url: "https://leetcode.com/u/Rakesh_Gummala/",
   },
   {
     name: "LinkedIn",
-    username: "@rakeshgummala",
+    username: "linkedin/Rakeshgummala",
     icon: <FaLinkedin className="text-[#0A66C2]" />,
-    url: "https://linkedin.com/",
+    url: "https://www.linkedin.com/in/rakesh-gummala-24873736b/",
   },
   {
     name: "GitHub",
-    username: "@rakeshgummala",
+    username: "github/RakeshGummala07",
     icon: <FaGithub className="text-black dark:text-white" />,
-    url: "https://github.com/",
+    url: "https://github.com/RakeshGummala07",
   },
   {
     name: "Resume",
     username: "View PDF",
     icon: <FaFileAlt className="text-blue-500" />,
-    url: "https://drive.google.com/", // replace this with your resume link
+    url: "https://drive.google.com/file/d/1jX3SQ-LzLKaKWWuSs347tHK97IeN0KUj/view?usp=sharing",
   },
 ];
 
@@ -50,7 +50,9 @@ export default function CareerLinks() {
             {/* Text */}
             <div className="flex flex-col leading-tight">
               <span className="font-medium text-[15px] ">{item.name}</span>
-              <span className="text-gray-500 md:text-sm text-[12px]">{item.username}</span>
+              <span className="text-gray-500 md:text-sm text-[10px]">
+                {item.username}
+              </span>
             </div>
           </div>
 

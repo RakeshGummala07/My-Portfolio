@@ -7,7 +7,7 @@ export default function Name() {
         <div className="">
           <img
             className="size-32 sm:size-40 p-1 rounded-full border border-neutral-500"
-            src="https://i.pinimg.com/564x/a0/81/55/a08155427a44e000276681a166c65337.jpg"
+            src="/assets/logo.jpg"
             alt="Profile"
             width="200"
             height="200"
@@ -18,7 +18,7 @@ export default function Name() {
             <p className="text-xl md:text-2xl font-bold">Rakesh Gummala</p>
           </div>
           <div className="p-0.5 border border-gray-500 rounded-xl  bg-white/20 dark:bg-black/20 shadow-gray-500">
-              <RotatingBlurTitle />
+            <RotatingBlurTitle />
           </div>
         </div>
       </div>

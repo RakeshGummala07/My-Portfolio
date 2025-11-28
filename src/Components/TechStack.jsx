@@ -1,23 +1,70 @@
 import React from "react";
 
 const skills = [
-  { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-  { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-  { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-  { name: "React.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-  { name: "Tailwind CSS", icon: "https://w7.pngwing.com/pngs/293/485/png-transparent-tailwind-css-hd-logo.png" },
-  { name: "Bootstrap", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
-  { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-  { name: "Express.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-  { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-  { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
-  { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
-
+  {
+    name: "Java",
+    icon: "/assets/java-logo.svg",
+  },
+  {
+    name: "Python",
+    icon: "/assets/python-logo.svg",
+  },
+  {
+    name: "HTML",
+    icon: "/assets/html-logo.svg",
+  },
+  {
+    name: "CSS",
+    icon: "/assets/css-logo.svg",
+  },
+  {
+    name: "JavaScript",
+    icon: "/assets/javascript-logo.svg",
+  },
+  {
+    name: "React.js",
+    icon: "/assets/react-logo.svg",
+  },
+  {
+    name: "Git",
+    icon: "/assets/git-logo.svg",
+  },
+  {
+    name: "GitHub",
+    icon: "/assets/github-logo.svg",
+  },
+  {
+    name: "Tailwind CSS",
+    icon: "/assets/tailwind-logo.png",
+  },
+  {
+    name: "Bootstrap",
+    icon: "/assets/bootstrap-logo.svg",
+  },
+  {
+    name: "Node.js",
+    icon: "/assets/nodejs-logo.svg",
+  },
+  {
+    name: "Express.js",
+    icon: "/assets/express-logo.svg",
+  },
+  {
+    name: "MySQL",
+    icon: "/assets/mysql-logo.svg",
+  },
+  {
+    name: "MongoDB",
+    icon: "/assets/mongodb-logo.svg",
+  },
+  {
+    name: "NumPy",
+    icon: "/assets/numpy-logo.svg",
+  },
+  {
+    name: "Pandas",
+    icon: "/assets/pandas-logo.svg",
+  },
 ];
 
 // Detect black/white logos
@@ -31,9 +78,8 @@ const isMono = (url) => {
     name.includes("glyph") ||
     name.includes("black") ||
     name.includes("white") ||
-    name.endsWith(".svg") && (
-      name.includes("github") || name.includes("express")
-    )
+    (name.endsWith(".svg") &&
+      (name.includes("github") || name.includes("express")))
   );
 };
 
@@ -49,7 +95,10 @@ export default function TechStackSection() {
           const mono = isMono(skill.icon);
 
           return (
-            <div key={idx} className="group relative flex flex-col items-center">
+            <div
+              key={idx}
+              className="group relative flex flex-col items-center cursor-pointer"
+            >
               <img
                 src={skill.icon}
                 alt={skill.name}

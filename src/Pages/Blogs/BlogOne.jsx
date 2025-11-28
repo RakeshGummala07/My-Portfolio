@@ -1,8 +1,6 @@
 import React, { useState } from "react";
+import FadeInSection from "../../Components/FadeInSection";
 
-// ------------------------------
-// ActivityTag Component
-// ------------------------------
 const ActivityTag = ({ type = "active", label }) => {
   const styles = {
     active: "bg-green-100 text-green-700 border-green-300",
@@ -14,37 +12,44 @@ const ActivityTag = ({ type = "active", label }) => {
   };
 
   return (
+    <FadeInSection>
     <span
       className={`
         px-3 py-1 rounded-full text-sm font-medium border
-        transition-all duration-300 select-none
+        transition-all duration-300 select-none dark:text-black
         ${styles[type] || styles.active}
       `}
     >
       {label}
     </span>
+    </FadeInSection>
   );
 };
 
-
 export default function BlogOne() {
   return (
+    <FadeInSection>
     <div className="max-w-3xl mx-auto px-6 py-16 text-gray-800 dark:text-gray-200">
-
       {/* Title */}
-      <h1 className="text-4xl font-bold mb-4">Understanding the ActivityTag Pattern in React</h1>
+      <h1 className="text-4xl font-bold mb-4 font-sans">
+        Understanding the ActivityTag Pattern in React
+      </h1>
 
       <p className="text-lg text-gray-600 dark:text-gray-400 mb-10">
-        A modern UI approach to show live user activity like online status, writing state, listening,
-        recording, and more — using a reusable React component.
+        A modern UI approach to show live user activity like online status,
+        writing state, listening, recording, and more — using a reusable React
+        component.
       </p>
 
       {/* Section: What is Activity Tag */}
-      <h2 className="text-2xl font-semibold mt-10 mb-3">What is an Activity Tag?</h2>
+      <h2 className="text-2xl font-semibold mt-10 mb-3">
+        What is an Activity Tag?
+      </h2>
       <p className="leading-relaxed">
-        An <strong>Activity Tag</strong> is a small visual indicator that displays what the user is 
-        currently doing — such as being online, writing a post, listening to music, or recording audio. 
-        It helps UI feel more interactive, dynamic, and real-time.
+        An <strong>Activity Tag</strong> is a small visual indicator that
+        displays what the user is currently doing — such as being online,
+        writing a post, listening to music, or recording audio. It helps UI feel
+        more interactive, dynamic, and real-time.
       </p>
 
       {/* Code Block */}
@@ -56,11 +61,13 @@ export default function BlogOne() {
       />
 
       {/* Section: Component Code */}
-      <h2 className="text-2xl font-semibold mt-10 mb-3">Building the ActivityTag Component</h2>
+      <h2 className="text-2xl font-semibold mt-10 mb-3">
+        Building the ActivityTag Component
+      </h2>
 
       <p className="mb-4">
-        Below is the complete reusable <strong>ActivityTag</strong> React component. 
-        You can drop it directly into your project:
+        Below is the complete reusable <strong>ActivityTag</strong> React
+        component. You can drop it directly into your project:
       </p>
 
       <CodeBlock
@@ -92,7 +99,9 @@ export default function ActivityTag({ type = "active", label }) {
       />
 
       {/* Section: Using ActivityTag */}
-      <h2 className="text-2xl font-semibold mt-10 mb-3">Using the Activity Tag</h2>
+      <h2 className="text-2xl font-semibold mt-10 mb-3">
+        Using the Activity Tag
+      </h2>
 
       <p className="mb-4">
         Here's how you can render activity tags inside a component:
@@ -120,7 +129,9 @@ export default function UserStatusCard() {
       />
 
       {/* Section: Available Tag Variants */}
-      <h2 className="text-2xl font-semibold mt-10 mb-3">Activity Tag Variants</h2>
+      <h2 className="text-2xl font-semibold mt-10 mb-3">
+        Activity Tag Variants
+      </h2>
 
       <div className="flex flex-wrap gap-3 mb-4">
         <ActivityTag type="active" label="🟢 Active Now" />
@@ -145,19 +156,16 @@ export default function UserStatusCard() {
 
       {/* End */}
       <p className="mt-10 text-base text-gray-500 dark:text-gray-400">
-        With this reusable Activity Tag pattern, you can improve your UI and show real-time user
-        context across chat apps, dashboards, media players, or portfolio interactions.
+        With this reusable Activity Tag pattern, you can improve your UI and
+        show real-time user context across chat apps, dashboards, media players,
+        or portfolio interactions.
       </p>
-
     </div>
+    </FadeInSection>
   );
 }
 
-
-
-// -----------------------------------
-// Copyable Code Block Component
-// -----------------------------------
+// Code Block
 function CodeBlock({ title, code }) {
   const [copied, setCopied] = useState(false);
 
@@ -169,6 +177,7 @@ function CodeBlock({ title, code }) {
   };
 
   return (
+    <FadeInSection>
     <div className="my-6 bg-gray-900 text-gray-100 rounded-lg p-4 relative overflow-hidden">
       <div className="flex justify-between items-center mb-2">
         <span className="text-sm text-gray-300">{title}</span>
@@ -194,5 +203,6 @@ function CodeBlock({ title, code }) {
         <code>{code}</code>
       </pre>
     </div>
+    </FadeInSection>
   );
 }

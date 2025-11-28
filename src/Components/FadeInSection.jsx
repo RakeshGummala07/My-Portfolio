@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 const FadeInSection = ({ children }) => {
   const [isVisible, setVisible] = useState(false);
   const domRef = useRef();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setVisible(true);
         }
@@ -29,7 +29,7 @@ const FadeInSection = ({ children }) => {
     <div
       ref={domRef}
       className={`transition-all duration-1000 ease-out ${
-        isVisible ? 'opacity-100 blur-none' : 'opacity-0 blur-sm'
+        isVisible ? "opacity-100 blur-none" : "opacity-0 blur-sm"
       }`}
     >
       {children}

@@ -18,7 +18,6 @@ export default function EducationSection() {
       details: [
         "Specialized in Communication Systems and Signal Processing.",
         "Worked on projects involving DSP, IoT, and Embedded Systems.",
-        
       ],
       skills: ["DSP", "VLSI", "IoT", "Communication Systems", "GPA: 7.83"],
     },
@@ -30,7 +29,7 @@ export default function EducationSection() {
       details: [
         "Completed with excellent academic record in Physics, Maths, and Chemistry.",
       ],
-      skills: ["Mathematics", "Physics", "Chemistry" ,"GPA: 7.89 "],
+      skills: ["Mathematics", "Physics", "Chemistry", "GPA: 7.89 "],
     },
     {
       college: "Froebel Model High School",
@@ -78,7 +77,7 @@ export default function EducationSection() {
                   <span className="absolute w-6 h-6 rounded-full bg-blue-400 opacity-60 blur-sm animate-pulseGlow"></span>
 
                   {/* Centered blue node */}
-                  <div className="w-8 h-8 flex items-center justify-center bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full border border-blue-300 dark:border-blue-700 shadow-md">
+                  <div className="w-7 h-7 flex items-center justify-center bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full border border-blue-300 dark:border-blue-700 shadow-md">
                     <GraduationCap size={16} />
                   </div>
                 </div>
@@ -92,7 +91,9 @@ export default function EducationSection() {
                 <div>
                   <h3 className="font-bold text-[15px] sm:text-[16px] md:text-[17px] flex items-center gap-2">
                     {edu.college}
-                    <span className="text-blue-500 text-[18px] animate-twinkle">•</span>
+                    <span className="text-blue-500 text-[18px] animate-twinkle">
+                      •
+                    </span>
                   </h3>
                   <p className="text-[13px] sm:text-[14px] font-semibold mt-1">
                     {edu.degree}
@@ -112,7 +113,9 @@ export default function EducationSection() {
               {/* Expandable Details */}
               <div
                 className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                  isOpen ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
+                  isOpen
+                    ? "max-h-[500px] opacity-100 mt-3"
+                    : "max-h-0 opacity-0"
                 }`}
               >
                 <ul className="list-disc list-inside text-[11px] md:text-[12px] space-y-1">

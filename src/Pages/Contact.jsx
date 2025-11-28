@@ -5,10 +5,9 @@ import { useState } from "react";
 import FadeInSection from "../Components/FadeInSection";
 import Container from "../Components/Container";
 
-
 export default function Contact() {
   const [loading, setLoading] = useState(false);
- console.log("The service id is", import.meta.env.VITE_SERVICE_ID)
+  console.log("The service id is", import.meta.env.VITE_SERVICE_ID);
 
   function sendEmail(e) {
     e.preventDefault();

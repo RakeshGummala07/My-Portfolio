@@ -1,11 +1,9 @@
-import React from 'react'
-import NameWritingEffect from "./NameWritingEffect"
-
+import React from "react";
+import NameWritingEffect from "./NameWritingEffect";
 
 export default function Hero() {
   return (
     <section className="relative w-full h-50 md:h-60 flex items-center justify-center bg-white dark:bg-zinc-900 text-black dark:text-white overflow-hidden">
-
       {/* Dotted Background */}
       <div className="absolute inset-0 pointer-events-none opacity-60">
         <div
@@ -32,63 +30,3 @@ export default function Hero() {
 }
 
 
-
-
-// export default function Hero() {
-//   return (
-    
-//       <section className="relative w-full h-50 md:h-60 flex items-center justify-center  bg-white dark:bg-zinc-900 text-black dark:text-white">
-      
-//       {/* Background Dots */}
-//       <div className="absolute inset-0 pointer-events-none">
-//         {Array.from({ length: 70 }).map((_, i) => (
-//           <span
-//             key={i}
-//             className="absolute rounded-full animate-glow-dot"
-//             style={{
-//               width: "6px",
-//               height: "6px",
-//               top: `${Math.random() * 100}%`,
-//               left: `${Math.random() * 100}%`,
-//               backgroundColor: "rgb(180,180,180)",
-//               boxShadow: `
-//                 0 0 6px rgba(180,180,180,0.8),
-//                 0 0 12px rgba(180,180,180,0.6)
-//               `,
-//               animationDelay: `${Math.random() * 4}s`,
-//             }}
-//           ></span>
-//         ))}
-//       </div>
-
-//       {/* Dark mode enhanced dots */}
-//       <div className="absolute inset-0 pointer-events-none dark:block hidden">
-//         {Array.from({ length: 70 }).map((_, i) => (
-//           <span
-//             key={`dark-${i}`}
-//             className="absolute rounded-full animate-glow-dot"
-//             style={{
-//               width: "6px",
-//               height: "6px",
-//               top: `${Math.random() * 100}%`,
-//               left: `${Math.random() * 100}%`,
-//               backgroundColor: "rgb(120,120,140)",
-//               boxShadow: `
-//                 0 0 8px rgba(120,120,255,0.8),
-//                 0 0 16px rgba(120,120,255,0.5)
-//               `,
-//               animationDelay: `${Math.random() * 4}s`,
-//             }}
-//           ></span>
-//         ))}
-//       </div>
-
-//       {/* Content */}
-//       <div className="relative">
-//           <AppleWritingEffect />
- 
-//       </div>
-//     </section>
-
-//   )
-// }

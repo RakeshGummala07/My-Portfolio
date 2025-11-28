@@ -4,14 +4,20 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { flushSync } from "react-dom";
 
-export default function AnimatedThemeToggler({ className = "", duration = 800, ...props }) {
+export default function AnimatedThemeToggler({
+  className = "",
+  duration = 900,
+  ...props
+}) {
   const [isDark, setIsDark] = useState(false);
   const buttonRef = useRef(null);
 
   // Load theme on first mount
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const systemDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
 
     const theme = stored || (systemDark ? "dark" : "light");
 
@@ -62,7 +68,7 @@ export default function AnimatedThemeToggler({ className = "", duration = 800, .
       {
         clipPath: [
           `circle(0px at ${x}px ${y}px)`,
-          `circle(${maxRadius}px at ${x}px ${y}px)`
+          `circle(${maxRadius}px at ${x}px ${y}px)`,
         ],
       },
       {
@@ -80,7 +86,11 @@ export default function AnimatedThemeToggler({ className = "", duration = 800, .
       className={`p-2 rounded-full ${className}`}
       {...props}
     >
-      {isDark ? <Sun className="text-amber-300 h-5 w-5" /> : <Moon className="text-blue-500 h-5 w-5"/>}
+      {isDark ? (
+        <Sun className="text-amber-300 h-5 w-5" />
+      ) : (
+        <Moon className="text-blue-500 h-5 w-5" />
+      )}
       <span className="sr-only">Toggle theme</span>
     </button>
   );

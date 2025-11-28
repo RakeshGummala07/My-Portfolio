@@ -3,7 +3,10 @@ import { Code2, MapPin, Phone, Mail, Globe, User } from "lucide-react";
 
 export default function ProfileCard() {
   const info = [
-    { icon: <Code2 />, text: "Full Stack Developer & Passionate Problem Solver" },
+    {
+      icon: <Code2 />,
+      text: "Full Stack Developer & Passionate Problem Solver",
+    },
     { icon: <MapPin />, text: "Hyderabad, Telangana, India" },
     { icon: <Phone />, text: "+91 62813 44624" },
     { icon: <Mail />, text: "rakeshgummala7@gmail.com" },
@@ -30,8 +33,8 @@ export default function ProfileCard() {
                     item.text.includes("@")
                       ? `mailto:${item.text}`
                       : item.text.startsWith("http")
-                      ? item.text
-                      : `https://${item.text}`
+                        ? item.text
+                        : `https://${item.text}`
                   }
                   target="_blank"
                   rel="noopener noreferrer"
