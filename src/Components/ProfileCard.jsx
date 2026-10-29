@@ -13,7 +13,7 @@ const info = [
     text: "rakeshgummala7@gmail.com",
     href: "mailto:rakeshgummala7@gmail.com",
   },
-  { icon: Globe, text: "rakeshgummala.com", href: "https://rakeshgummala.com" },
+  { icon: Globe, text: "rakeshgummala.com", href: "https://rakeshgummala.vercel.app" },
   { icon: User, text: "he/him" },
 ];
 
