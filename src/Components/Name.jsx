@@ -1,27 +1,20 @@
-import React from "react";
 import RotatingBlurTitle from "./SimpleRotatingCard";
 export default function Name() {
   return (
-    <>
-      <div className="screen-line-after  border-x border-edge sm:h-32 md:h-40 flex items-center bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-xl shadow-sm   text-gray-800 dark:text-gray-100 leading-relaxed">
-        <div className="">
+        <div className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 text-gray-800 shadow-sm sm:gap-4 sm:p-4 dark:border-zinc-700 dark:bg-zinc-900 dark:text-gray-100">
           <img
-            className="size-32 sm:size-40 p-1 rounded-full border border-neutral-500"
+            className="size-24 shrink-0 rounded-full border border-neutral-500 object-cover p-1 sm:size-32 md:size-36"
             src="/assets/logo.jpg"
-            alt="Profile"
-            width="200"
-            height="200"
+            alt="Portrait of Rakesh Gummala"
+            width="144"
+            height="144"
           />
-        </div>
-        <div className="m-1 ml-2">
-          <div className="">
-            <p className="text-xl md:text-2xl font-bold">Rakesh Gummala</p>
-          </div>
-          <div className="p-0.5 border border-gray-500 rounded-xl  bg-white/20 dark:bg-black/20 shadow-gray-500">
-            <RotatingBlurTitle />
+          <div className="min-w-0">
+            <h1 className="text-xl font-bold md:text-2xl">Rakesh Gummala</h1>
+            <div className="mt-1 w-fit max-w-full min-w-48 rounded-xl border border-gray-400 bg-white/20 p-0.5 dark:border-gray-500 dark:bg-black/20 sm:min-w-64">
+              <RotatingBlurTitle />
+            </div>
           </div>
         </div>
-      </div>
-    </>
   );
 }

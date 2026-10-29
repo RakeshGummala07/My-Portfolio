@@ -26,7 +26,7 @@ const links = [
     name: "Resume",
     username: "View PDF",
     icon: <FaFileAlt className="text-blue-500" />,
-    url: "https://drive.google.com/file/d/1jX3SQ-LzLKaKWWuSs347tHK97IeN0KUj/view?usp=sharing",
+    url: "https://drive.google.com/file/d/19wnc1GFQ2j-fBiPEI06JJdXNiKfYzy9U/view?usp=drivesdk",
   },
 ];
 

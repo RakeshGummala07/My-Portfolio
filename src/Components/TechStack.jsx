@@ -1,121 +1,127 @@
-import React from "react";
+import {
+  SiJavascript,
+  SiPython,
+  SiNumpy,
+  SiPandas,
+  SiSpringboot,
+  SiNodedotjs,
+  SiExpress,
+  SiReact,
+  SiRedux,
+  SiReactquery,
+  SiTailwindcss,
+  SiHtml5,
+  SiCss3,
+  SiBootstrap,
+  SiFramer,
+  SiMysql,
+  SiMongodb,
+  SiRedis,
+  SiApachekafka,
+  SiRabbitmq,
+  SiDocker,
+  SiKubernetes,
+  SiGithubactions,
+  SiGit,
+  SiGithub,
+  SiGrafana,
+  SiApachemaven,
+  SiOllama,
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 
-const skills = [
+// `mono: true` icons follow the text colour so dark brand colours stay
+// visible in dark mode.
+const groups = [
   {
-    name: "Java",
-    icon: "/assets/java-logo.svg",
+    label: "Languages",
+    items: [
+      { name: "Java", Icon: FaJava, color: "#E76F00" },
+      { name: "JavaScript", Icon: SiJavascript, color: "#C9A800" },
+      { name: "Python", Icon: SiPython, color: "#3776AB" },
+      { name: "HTML", Icon: SiHtml5, color: "#E34F26" },
+      { name: "CSS", Icon: SiCss3, color: "#1572B6" },
+      { name: "NumPy", Icon: SiNumpy, mono: true },
+      { name: "Pandas", Icon: SiPandas, mono: true },
+    ],
   },
   {
-    name: "Python",
-    icon: "/assets/python-logo.svg",
+    label: "Backend",
+    items: [
+      { name: "Spring Boot", Icon: SiSpringboot, color: "#6DB33F" },
+      { name: "Node.js", Icon: SiNodedotjs, color: "#5FA04E" },
+      { name: "Express", Icon: SiExpress, mono: true },
+      { name: "Maven", Icon: SiApachemaven, color: "#C71A36" },
+    ],
   },
   {
-    name: "HTML",
-    icon: "/assets/html-logo.svg",
+    label: "Frontend",
+    items: [
+      { name: "React", Icon: SiReact, color: "#0EA5C6" },
+      { name: "Redux Toolkit", Icon: SiRedux, color: "#764ABC" },
+      { name: "TanStack Query", Icon: SiReactquery, color: "#FF4154" },
+      { name: "Tailwind CSS", Icon: SiTailwindcss, color: "#06B6D4" },
+      { name: "Bootstrap", Icon: SiBootstrap, color: "#7952B3" },
+      { name: "Framer Motion", Icon: SiFramer, mono: true },
+    ],
   },
   {
-    name: "CSS",
-    icon: "/assets/css-logo.svg",
+    label: "Data and messaging",
+    items: [
+      { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
+      { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
+      { name: "Redis", Icon: SiRedis, color: "#DC382D" },
+      { name: "Kafka", Icon: SiApachekafka, mono: true },
+      { name: "RabbitMQ", Icon: SiRabbitmq, color: "#FF6600" },
+    ],
   },
   {
-    name: "JavaScript",
-    icon: "/assets/javascript-logo.svg",
-  },
-  {
-    name: "React.js",
-    icon: "/assets/react-logo.svg",
-  },
-  {
-    name: "Git",
-    icon: "/assets/git-logo.svg",
-  },
-  {
-    name: "GitHub",
-    icon: "/assets/github-logo.svg",
-  },
-  {
-    name: "Tailwind CSS",
-    icon: "/assets/tailwind-logo.png",
-  },
-  {
-    name: "Bootstrap",
-    icon: "/assets/bootstrap-logo.svg",
-  },
-  {
-    name: "Node.js",
-    icon: "/assets/nodejs-logo.svg",
-  },
-  {
-    name: "Express.js",
-    icon: "/assets/express-logo.svg",
-  },
-  {
-    name: "MySQL",
-    icon: "/assets/mysql-logo.svg",
-  },
-  {
-    name: "MongoDB",
-    icon: "/assets/mongodb-logo.svg",
-  },
-  {
-    name: "NumPy",
-    icon: "/assets/numpy-logo.svg",
-  },
-  {
-    name: "Pandas",
-    icon: "/assets/pandas-logo.svg",
+    label: "DevOps and AI",
+    items: [
+      { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+      { name: "Kubernetes", Icon: SiKubernetes, color: "#326CE5" },
+      { name: "GitHub Actions", Icon: SiGithubactions, color: "#2088FF" },
+      { name: "Grafana", Icon: SiGrafana, color: "#F46800" },
+      { name: "Git", Icon: SiGit, color: "#F05032" },
+      { name: "GitHub", Icon: SiGithub, mono: true },
+      { name: "Ollama", Icon: SiOllama, mono: true },
+    ],
   },
 ];
 
-// Detect black/white logos
-const isMono = (url) => {
-  const name = url.toLowerCase();
-  return (
-    name.includes("github") ||
-    name.includes("express") ||
-    name.includes("mono") ||
-    name.includes("line") ||
-    name.includes("glyph") ||
-    name.includes("black") ||
-    name.includes("white") ||
-    (name.endsWith(".svg") &&
-      (name.includes("github") || name.includes("express")))
-  );
-};
-
 export default function TechStackSection() {
   return (
-    <section className="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-xl shadow-sm p-6 sm:p-8 md:p-10 font-mono text-gray-800 dark:text-gray-100 leading-relaxed">
-      <h2 className="text-2xl font-bold mb-5 border-b border-gray-200 dark:border-zinc-700 pb-2">
+    <section
+      id="tech-stack"
+      className="w-full rounded-xl border border-gray-200 bg-white p-6 font-mono leading-relaxed text-gray-800 shadow-sm sm:p-8 md:p-10 dark:border-zinc-700 dark:bg-zinc-900 dark:text-gray-100"
+    >
+      <h2 className="mb-5 border-b border-gray-200 pb-2 text-2xl font-bold dark:border-zinc-700">
         Tech Stack
       </h2>
 
-      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-9 gap-4 md:gap-6 place-items-center">
-        {skills.map((skill, idx) => {
-          const mono = isMono(skill.icon);
-
-          return (
-            <div
-              key={idx}
-              className="group relative flex flex-col items-center cursor-pointer"
-            >
-              <img
-                src={skill.icon}
-                alt={skill.name}
-                className={`
-                  w-8 h-8 md:w-10 md:h-10 object-contain transition-transform duration-300 
-                  group-hover:scale-110
-                  ${mono ? "dark:brightness-0 dark:invert" : ""}
-                `}
-              />
-
-              {/* Tooltip */}
-              <span className="absolute z-10 bottom-[-1.8rem] px-2 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-md bg-white dark:bg-zinc-800 text-black dark:text-white">
-                {skill.name}
-              </span>
-            </div>
-          );
-        })}
+      <div className="space-y-5">
+        {groups.map((group) => (
+          <div key={group.label}>
+            <h3 className="mb-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
+              {group.label}
+            </h3>
+            <ul className="flex flex-wrap gap-2">
+              {group.items.map(({ name, Icon, color, mono }) => (
+                <li
+                  key={name}
+                  className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-gray-50 px-2.5 py-1.5 text-xs dark:border-zinc-700 dark:bg-zinc-800"
+                >
+                  <Icon
+                    aria-hidden="true"
+                    className={`size-4 ${mono ? "text-neutral-900 dark:text-neutral-100" : ""}`}
+                    style={mono ? undefined : { color }}
+                  />
+                  {name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
   );

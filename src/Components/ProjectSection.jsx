@@ -1,118 +1,136 @@
-import { useRef } from "react";
 import { motion } from "framer-motion";
-import { DiGithubBadge } from "react-icons/di";
-import { CgLink } from "react-icons/cg";
+import { FaGithub } from "react-icons/fa";
+import { ExternalLink } from "lucide-react";
+import { projects, tech } from "../data/projects";
 
-export default function ProjectsSection() {
-  const projects = [
-    {
-      title: "Currency Converter",
-      desc: "Developed a web-based multicurrency conversion tool using React, featuring real-time rates from Currency API.",
-      livelink : "https://simple-currency-converter-rho.vercel.app/",
-      gitlink : "https://github.com/RakeshGummala07/currency_converrter",
-      image:
-        '/assets/currency_converter.png',
-      tech: [
-        "/assets/react-logo.svg",
-      ],
-    },
-    {
-      title: "Hotel and Accommodation Management Web App (Stayomi)",
-      desc: "Developed a full-stack web application with features for CRUD operations, implemented user authentication with role-based access (admin vs guest).",
-      livelink : "https://stayomi.onrender.com/listings",
-      gitlink : "https://github.com/RakeshGummala07/Stayomi",
-      image:
-        '/assets/stayomi.png',
-      tech: [
-        "/assets/nodejs-logo.svg",
-        "/assets/express-logo.svg",
-        "/assets/mongodb-logo.svg",
-      ]
-      
-    },
-    
-  ];
+function TechChip({ id }) {
+  const { name, Icon, color, mono } = tech[id];
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-md border border-gray-200 bg-gray-50 px-2 py-0.5 text-[11px] dark:border-zinc-700 dark:bg-zinc-800">
+      <Icon
+        aria-hidden="true"
+        style={mono ? undefined : { color }}
+        className={mono ? "text-neutral-900 dark:text-neutral-100" : ""}
+      />
+      {name}
+    </span>
+  );
+}
+
+function IconLink({ href, label, children }) {
+  if (!href) return null;
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="rounded-full p-1.5 transition-colors hover:bg-gray-200 dark:hover:bg-zinc-700"
+    >
+      {children}
+    </a>
+  );
+}
+
+function ProjectCard({ project, index }) {
+  const {
+    title,
+    subtitle,
+    status,
+    desc,
+    highlights,
+    gitlink,
+    livelink,
+    image,
+  } = project;
 
   return (
-    <section className="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-xl shadow-sm p-6 sm:p-8 md:p-10 font-mono text-gray-800 dark:text-gray-100 leading-relaxed">
-      {/* Fade Up Title */}
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="text-1.5xl font-bold mb-5 border-b border-gray-200 dark:border-zinc-700 pb-2"
-      >
-        I love building things
-      </motion.h2>
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+      className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-zinc-700 dark:bg-zinc-900"
+    >
+      {image ? (
+        <img
+          src={image}
+          alt={`Screenshot of ${title}`}
+          loading="lazy"
+          className="h-40 w-full object-cover"
+        />
+      ) : (
+        <div
+          role="img"
+          aria-label={`${title} (screenshot coming soon)`}
+          className="flex h-40 w-full flex-col items-center justify-center bg-linear-to-br from-gray-100 to-gray-200 px-4 text-center dark:from-zinc-800 dark:to-zinc-900"
+        >
+          <span className="text-2xl font-bold">{title}</span>
+          <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+            {subtitle}
+          </span>
+        </div>
+      )}
 
-      {/* Project Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full ">
-        {projects.map((project, i) => {
-          const cardRef = useRef(null);
+      <div className="flex flex-1 flex-col gap-3 p-4">
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <h3 className="text-base font-semibold">{title}</h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{status}</p>
+          </div>
+          <div className="flex shrink-0 items-center">
+            <IconLink href={gitlink} label={`${title} source code on GitHub`}>
+              <FaGithub className="size-5" />
+            </IconLink>
+            <IconLink href={livelink} label={`${title} live demo`}>
+              <ExternalLink className="size-5" />
+            </IconLink>
+          </div>
+        </div>
 
-          return (
-            <motion.div
-              key={i}
-              ref={cardRef}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.6,
-                delay: i * 0.15,
-                ease: "easeOut",
-              }}
-              className="
-                bg-transparent 
-                rounded-xl 
-                cursor-pointer 
-                transition-all 
-                duration-300 
-                sm:border-gray-600
-                md:hover:shadow-[0_0_10px_rgba(0,0,0,0.25)]
-                md:dark:hover:shadow-[0_0_10px_rgba(255,255,255,0.15)]
-                md:hover:border-gray-600
-                
-              "
-             
-            >
-              {/* Image */}
-              <div className="w-full overflow-hidden rounded-xl bg-gray-200 dark:bg-zinc-800">
-                <img
-                  src={project.image}
-                  className="w-full h-48 sm:h-32 md:h-40 object-cover"
-                />
-              </div>
+        <p className="text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+          {desc}
+        </p>
 
+        {highlights.length > 0 && (
+          <details className="group text-xs">
+            <summary className="cursor-pointer font-semibold select-none">
+              What&rsquo;s inside
+            </summary>
+            <ul className="mt-2 list-disc space-y-1.5 pl-4 text-gray-600 dark:text-gray-400">
+              {highlights.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </details>
+        )}
 
-              {/* Title */}
-              <h3 className="flex text-[16px] font-semibold mt-4 m-2 justify-between">
-                {project.title}
-                <div className="flex">
-                  <a target="_blank" href={project.gitlink}><DiGithubBadge className="size-6 cursor-pointer ml-1 hover:bg-gray-200 rounded-full hover:scale-110 ease-in-out duration-75 dark:hover:bg-gray-800"/></a>
-                  <a target="_blank" href={project.livelink}><CgLink className="size-5 cursor-pointer m-0.5 hover:bg-gray-200 rounded-full hover:scale-110 ease-in-out duration-75 dark:hover:bg-gray-800"/></a>
-                </div>
-              </h3>
+        <div className="mt-auto flex flex-wrap gap-1.5 pt-1">
+          {project.tech.map((id) => (
+            <TechChip key={id} id={id} />
+          ))}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 
-              {/* Description */}
-              <p className="text-gray-600 dark:text-gray-400 text-xs m-2 ">
-                {project.desc}
-              </p>
+export default function ProjectsSection({ showHeading = true }) {
+  return (
+    <section
+      id="projects"
+      className="w-full rounded-xl border border-gray-200 bg-white p-4 font-mono leading-relaxed text-gray-800 shadow-sm sm:p-6 md:p-8 dark:border-zinc-700 dark:bg-zinc-900 dark:text-gray-100"
+    >
+      {showHeading && (
+        <h2 className="mb-5 border-b border-gray-200 pb-2 text-2xl font-bold dark:border-zinc-700">
+          Projects
+        </h2>
+      )}
 
-              {/* Tech Icons */}
-              <div className="flex gap-1 m-2">
-                {project.tech.map((icon, idx) => (
-                  <img
-                    key={idx}
-                    src={icon}
-                    className="w-7 h-7 bg-gray-100 dark:bg-zinc-800 p-1 rounded-full border dark:border-zinc-700 hover:rotate-360 ease-in-out transition-transform hover:scale-105"
-                  />
-                ))}
-              </div>
-            </motion.div>
-          );
-        })}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {projects.map((project, i) => (
+          <ProjectCard key={project.id} project={project} index={i} />
+        ))}
       </div>
     </section>
   );

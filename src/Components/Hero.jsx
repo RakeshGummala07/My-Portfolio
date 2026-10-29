@@ -18,7 +18,7 @@ export default function Hero() {
 
       {/* Center-Out Glow Ripple */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="animate-centerGlow w-[40%] h-[40%] rounded-full bg-blue-100 dark:bg-gray-800 blur-7xl"></div>
+        <div className="animate-centerGlow w-[40%] h-[40%] rounded-full bg-blue-100 dark:bg-gray-800"></div>
       </div>
 
       {/* Content */}

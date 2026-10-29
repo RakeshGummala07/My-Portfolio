@@ -1,67 +1,48 @@
-"use client";
-
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import { Moon, Sun } from "lucide-react";
 import { flushSync } from "react-dom";
+import { useTheme } from "../context/ThemeContext";
 
 export default function AnimatedThemeToggler({
   className = "",
-  duration = 900,
+  duration = 700,
   ...props
 }) {
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, setTheme } = useTheme();
   const buttonRef = useRef(null);
 
-  // Load theme on first mount
-  useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const systemDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
+  const toggleTheme = useCallback(async () => {
+    const next = !isDark;
+    const button = buttonRef.current;
 
-    const theme = stored || (systemDark ? "dark" : "light");
+    // View Transitions are not available in every browser (e.g. older
+    // Firefox/Safari) and should be skipped for reduced-motion users.
+    const canAnimate =
+      button &&
+      typeof document.startViewTransition === "function" &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    setIsDark(theme === "dark");
-  }, []);
+    if (!canAnimate) {
+      setTheme(next);
+      return;
+    }
 
-  // Watch for any external theme changes
-  useEffect(() => {
-    const updateTheme = () => {
-      setIsDark(document.documentElement.classList.contains("dark"));
-    };
-
-    const observer = new MutationObserver(updateTheme);
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
+    const transition = document.startViewTransition(() => {
+      flushSync(() => setTheme(next));
     });
 
-    return () => observer.disconnect();
-  }, []);
+    try {
+      await transition.ready;
+    } catch {
+      return; // transition was skipped; theme is already applied
+    }
 
-  // Toggle theme
-  const toggleTheme = useCallback(async () => {
-    if (!buttonRef.current) return;
-
-    await document.startViewTransition(() => {
-      flushSync(() => {
-        const newTheme = !isDark;
-
-        setIsDark(newTheme);
-        document.documentElement.classList.toggle("dark", newTheme);
-        localStorage.setItem("theme", newTheme ? "dark" : "light");
-      });
-    }).ready;
-
-    const rect = buttonRef.current.getBoundingClientRect();
+    const rect = button.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
-
     const maxRadius = Math.hypot(
-      Math.max(rect.left, window.innerWidth - rect.left),
-      Math.max(rect.top, window.innerHeight - rect.top)
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
     );
 
     document.documentElement.animate(
@@ -75,23 +56,24 @@ export default function AnimatedThemeToggler({
         duration,
         easing: "ease-in-out",
         pseudoElement: "::view-transition-new(root)",
-      }
+      },
     );
-  }, [isDark, duration]);
+  }, [isDark, setTheme, duration]);
 
   return (
     <button
       ref={buttonRef}
+      type="button"
       onClick={toggleTheme}
-      className={`p-2 rounded-full ${className}`}
+      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      className={`rounded-full p-2 ${className}`}
       {...props}
     >
       {isDark ? (
-        <Sun className="text-amber-300 h-5 w-5" />
+        <Sun className="h-5 w-5 text-amber-300" />
       ) : (
-        <Moon className="text-blue-500 h-5 w-5" />
+        <Moon className="h-5 w-5 text-blue-500" />
       )}
-      <span className="sr-only">Toggle theme</span>
     </button>
   );
 }

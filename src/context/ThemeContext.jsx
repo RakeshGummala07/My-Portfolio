@@ -1,45 +1,57 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 
-const ThemeContext = createContext();
+const ThemeContext = createContext({
+  isDark: false,
+  setTheme: () => {},
+  toggleTheme: () => {},
+});
 
-export const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useState(() => {
-    // Initialize state based on localStorage or system preference
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      return savedTheme === "dark" || (!savedTheme && prefersDark);
-    }
-    return false;
-  });
+function getInitialTheme() {
+  try {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved === "dark";
+  } catch {
+    /* localStorage can be blocked (private mode) - fall through */
+  }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
 
-  useEffect(() => {
-    // Sync the class on mount and when isDark changes
-    if (typeof window !== "undefined") {
-      if (isDark) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    }
+export function ThemeProvider({ children }) {
+  const [isDark, setIsDark] = useState(getInitialTheme);
+
+  // Layout effect so the class is applied during commit (needed for the
+  // view-transition animation in AnimatedThemeToggler).
+  useLayoutEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
   }, [isDark]);
 
-  const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
-    if (typeof window !== "undefined") {
-      document.documentElement.classList.toggle("dark", newTheme);
-      localStorage.setItem("theme", newTheme ? "dark" : "light");
+  const setTheme = useCallback((dark) => {
+    setIsDark(dark);
+    try {
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    } catch {
+      /* ignore storage errors */
     }
-  };
+  }, []);
+
+  const toggleTheme = useCallback(() => setTheme(!isDark), [isDark, setTheme]);
+
+  const value = useMemo(
+    () => ({ isDark, setTheme, toggleTheme }),
+    [isDark, setTheme, toggleTheme],
+  );
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
-};
+}
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => useContext(ThemeContext);

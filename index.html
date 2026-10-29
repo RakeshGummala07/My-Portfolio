@@ -1,16 +1,51 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/src/style.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
-    <title>Rakesh Gummala | Fullstack Developer</title>
 
+    <title>Rakesh Gummala | Backend & Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Rakesh Gummala, a 2026 B.Tech ECE graduate from Hyderabad who builds Java and Spring Boot microservices and React apps. Open to entry-level SDE and IT support roles."
+    />
+    <meta name="author" content="Rakesh Gummala" />
+    <meta name="theme-color" content="#09090b" />
 
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+    <!-- Social previews -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Rakesh Gummala | Backend & Full-Stack Developer"
+    />
+    <meta
+      property="og:description"
+      content="Java and Spring Boot microservices, React apps, and notes on the bugs I fix along the way."
+    />
+    <meta property="og:url" content="https://rakeshgummala.com" />
+    <meta
+      property="og:image"
+      content="https://rakeshgummala.com/assets/logo.jpg"
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark = saved
+            ? saved === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
+  <body
+    class="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100"
+  >
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

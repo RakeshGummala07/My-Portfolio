@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const roles = [
-  "Software Engineer",
-  "Full Stack Developer",
-  "Frontend Developer",
-  "Backend Developer",
+  "Backend & Full-Stack Developer",
+  "Java & Spring Boot Developer",
+  "Microservices Builder",
+  "React Developer",
   "Problem Solver",
-  "Being creative with code",
+  "Open to SDE & IT Support roles",
 ];
 
 export default function RotatingBlurTitle({ className = "" }) {
@@ -16,23 +16,26 @@ export default function RotatingBlurTitle({ className = "" }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % roles.length);
-    }, 1800);
+    }, 2200);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className={`relative flex items-center justify-center ${className}`}>
+    <div
+      className={`relative flex min-h-6 items-center justify-center ${className}`}
+      aria-live="off"
+    >
       <AnimatePresence mode="wait">
-        <motion.h1
+        <motion.p
           key={roles[index]}
-          initial={{ opacity: 0, filter: "blur(12px) " }}
-          animate={{ opacity: 1, filter: "blur(0px) " }}
-          exit={{ opacity: 0, filter: "blur(12px) " }}
+          initial={{ opacity: 0, filter: "blur(12px)" }}
+          animate={{ opacity: 1, filter: "blur(0px)" }}
+          exit={{ opacity: 0, filter: "blur(12px)" }}
           transition={{ duration: 0.55, ease: "easeInOut" }}
-          className="text-[12px] font-bold relative text-white drop-shadow-[0 0 25px rgba(255,255,255,0.45)]"
+          className="relative px-2 text-center text-xs font-bold text-neutral-800 sm:text-sm dark:text-white"
         >
           {roles[index]}
-        </motion.h1>
+        </motion.p>
       </AnimatePresence>
     </div>
   );

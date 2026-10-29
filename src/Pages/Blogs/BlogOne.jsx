@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import FadeInSection from "../../Components/FadeInSection";
+import CodeBlock from "../../Components/CodeBlock";
 
+// Small live demo used inside the article
 const ActivityTag = ({ type = "active", label }) => {
   const styles = {
     active: "bg-green-100 text-green-700 border-green-300",
@@ -12,7 +12,6 @@ const ActivityTag = ({ type = "active", label }) => {
   };
 
   return (
-    <FadeInSection>
     <span
       className={`
         px-3 py-1 rounded-full text-sm font-medium border
@@ -22,25 +21,13 @@ const ActivityTag = ({ type = "active", label }) => {
     >
       {label}
     </span>
-    </FadeInSection>
   );
 };
 
+/** Article body. The title, date and tags are rendered by BlogPost. */
 export default function BlogOne() {
   return (
-    <FadeInSection>
-    <div className="max-w-3xl mx-auto px-6 py-16 text-gray-800 dark:text-gray-200">
-      {/* Title */}
-      <h1 className="text-4xl font-bold mb-4 font-sans">
-        Understanding the ActivityTag Pattern in React
-      </h1>
-
-      <p className="text-lg text-gray-600 dark:text-gray-400 mb-10">
-        A modern UI approach to show live user activity like online status,
-        writing state, listening, recording, and more — using a reusable React
-        component.
-      </p>
-
+    <>
       {/* Section: What is Activity Tag */}
       <h2 className="text-2xl font-semibold mt-10 mb-3">
         What is an Activity Tag?
@@ -160,49 +147,6 @@ export default function UserStatusCard() {
         show real-time user context across chat apps, dashboards, media players,
         or portfolio interactions.
       </p>
-    </div>
-    </FadeInSection>
-  );
-}
-
-// Code Block
-function CodeBlock({ title, code }) {
-  const [copied, setCopied] = useState(false);
-
-  const copyToClipboard = () => {
-    if (copied) return; // Prevent multiple clicks during copied state
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <FadeInSection>
-    <div className="my-6 bg-gray-900 text-gray-100 rounded-lg p-4 relative overflow-hidden">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm text-gray-300">{title}</span>
-        <button
-          onClick={copyToClipboard}
-          className="text-xs bg-gray-700 px-2 py-1 rounded hover:bg-gray-600 flex items-center gap-1"
-        >
-          {copied ? (
-            <>
-              <span>✓</span>
-              <span>Copied</span>
-            </>
-          ) : (
-            <>
-              <span>📋</span>
-              <span>Copy</span>
-            </>
-          )}
-        </button>
-      </div>
-
-      <pre className="whitespace-pre-wrap text-sm">
-        <code>{code}</code>
-      </pre>
-    </div>
-    </FadeInSection>
+    </>
   );
 }

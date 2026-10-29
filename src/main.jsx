@@ -9,26 +9,30 @@ import Navbar from "./Components/Navbar.jsx";
 import Container from "./Components/Container.jsx";
 import Projects from "./Pages/Projects.jsx";
 import Blogs from "./Pages/Blogs.jsx";
-import BlogOne from "./Pages/Blogs/BlogOne.jsx";
+import BlogPost from "./Pages/Blogs/BlogPost.jsx";
+import NotFound from "./Pages/NotFound.jsx";
 import Footer from "./Components/Footer.jsx";
+import ScrollToTop from "./Components/ScrollToTop.jsx";
 
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Container>
-      <ThemeProvider>
-        <Router>
+    <ThemeProvider>
+      <Router>
+        <ScrollToTop />
+        <Container>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/blog" element={<Blogs />} />
-            <Route path="/blog/:slug" element={<BlogOne />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
-        </Router>
-      </ThemeProvider>
-    </Container>
-    <Footer/>
+        </Container>
+      <Footer/>
+      </Router>
+    </ThemeProvider>
   </StrictMode>
 );

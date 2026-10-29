@@ -19,7 +19,7 @@ export default function EducationSection() {
         "Specialized in Communication Systems and Signal Processing.",
         "Worked on projects involving DSP, IoT, and Embedded Systems.",
       ],
-      skills: ["DSP", "VLSI", "IoT", "Communication Systems", "GPA: 7.83"],
+      skills: ["DSP", "VLSI", "IoT", "Communication Systems", "GPA: 8.01"],
     },
     {
       college: "Vidwan Junior College",
